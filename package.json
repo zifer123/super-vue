@@ -2,13 +2,18 @@
   "name": "super-vue",
   "version": "0.1.0",
   "private": true,
+  "bin": {
+    "zz": "bin/zz.js"
+  },
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "serve": "vue-cli-service serve --mode development",
+    "build": "vue-cli-service build --mode production && node ./scripts/upcdn.js",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "generate": "node scripts/zz-add"
   },
   "dependencies": {
+    "axios": "^0.19.0",
     "core-js": "^3.3.2",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",
@@ -25,8 +30,11 @@
     "@vue/test-utils": "1.0.0-beta.29",
     "babel-eslint": "^10.0.3",
     "chai": "^4.1.2",
+    "chalk": "^2.4.2",
+    "compression-webpack-plugin": "^3.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
+    "inquirer": "^7.0.0",
     "less": "^3.0.4",
     "less-loader": "^5.0.0",
     "vue-template-compiler": "^2.6.10"

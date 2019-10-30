@@ -6,12 +6,24 @@
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>super-vue</title>
+    <% if (process.env.NODE_ENV) === 'production') { %>
+      <% for (var css of htmlWebpackPlugin.options.cdn.css) { %>
+        <link rel="proload" href="<%=css%>" as="style">
+        <link rel="stylesheet" href="<%=css%>" as="style">
+      <% } %>
+    <% } %>
   </head>
   <body>
     <noscript>
       <strong>We're sorry but super-vue doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <% if (process.env.NODE_ENV) === 'production') { %>
+      <% for (var js of htmlWebpackPlugin.options.cdn.js) { %>
+        <link rel="proload" href="<%=js%>" as="script">
+        <script src="<%=js%>"></script>
+      <% } %>
+    <% } %>
     <!-- built files will be auto injected -->
   </body>
 </html>
